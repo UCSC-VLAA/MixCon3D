@@ -112,7 +112,7 @@ sudo reboot now
 ```
 If rebooting not work, I turn to reinstall the GPU driver (following this [instruction](https://waydo.xyz/soft/linux/ubuntu-nvidia-apt/)). It works finally.
 
-Before the above solution, I tried to reload the Nvidia driver (like [this](https://askubuntu.com/questions/1166317/module-nvidia-is-in-use-but-there-are-no-processes-running-on-the-gpu)), but it doesn't work. The reason I guess, is the Nvidia loaded driver doesn't share between the below two commands:
+Before the above solution, I tried to reload the Nvidia driver (like [this](https://askubuntu.com/questions/1166317/module-nvidia-is-in-use-but-there-are-no-processes-running-on-the-gpu)), but it doesn't work. The reason, I guess, is the Nvidia loaded driver doesn't share between the below two commands:
 
 ```
 cat /proc/driver/nvidia/version
@@ -120,41 +120,5 @@ cat /proc/driver/nvidia/version
 
 ```
 dpkg -l | grep nvidia
-```
-
-
-
-
-
-### Remote Mount
-
-For mounting dataset from 4u-10 to the current server, use the following command:
-```
-mkdir Objaverse
-```
-
-```
-sshfs cihangxie@169.233.1.31:/data3/data/Objaverse Objaverse
-```
-
-```
-mkdir objaverse-processed
-```
-
-```
-sshfs yipeng@169.233.1.12:/data2/data/objaverse-processed objaverse-processed
-```
-
-For mounting dataset from 4u-10 to the current server, use the following command:
-```
-mkdir openshape
-```
-
-```
-sshfs yipeng@169.233.1.29:/home/yipeng/openshape openshape
-```
-
-```
-sshfs cihangxie@169.233.1.31:/home/cihangxie/yipeng/OpenShape_code openshape
 ```
 
