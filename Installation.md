@@ -1,6 +1,6 @@
 ## Installation
 
-**The original instruction part is easy to follow but sometimes meet obstacles. Therefore, I list a more detailed one. Hope you find the new one well.**
+**The original instruction part is easy to follow but sometimes meets obstacles. Therefore, I list a more detailed one. Hope you find them well.**
 
 If you would like to run the inference or (and) training locally, you may need to install the dependencies.
 
