@@ -1,5 +1,5 @@
-# MixCon3D
-The code for MixCon3D
+# MixCon3D: Synergizing Multi-View and Cross-Modal Contrastive Learning for Enhancing 3D Representation
+This repository contains the official implementation of "MixCon3D" in our paper.
 
 ## Installation
 
