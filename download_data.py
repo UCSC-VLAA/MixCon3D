@@ -2,9 +2,10 @@ import os
 from multiprocessing import Pool
 from huggingface_hub import hf_hub_download
 
-def single_uncompress(file, dest="/mnt/data"):
+def single_uncompress(file, dest="/data1/data"):
 	hf_hub_download(repo_id="OpenShape/openshape-training-data", filename=file, repo_type="dataset", local_dir=dest, local_dir_use_symlinks=False)
 	if file.endswith(".tar.gz"):
+	# tar -xzf RitualRex-GGJ2016.tar.gz
 		os.system("tar -xzf %s/%s -C %s" % (dest, file, dest))
 	elif file.endswith(".zip"):
 		os.system("unzip %s/%s -d %s" % (dest, file, dest))
