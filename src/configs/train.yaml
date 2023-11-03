@@ -12,8 +12,8 @@ model:
 training:
   debug: False
   use_openclip_optimizer_scheduler: True
-  lr: 0.002
-  min_lr: 0.001
+  lr: 0.006
+  min_lr: 0.003
   lr_decay_step: 10000
   lr_decay_rate: 0.967
   beta1: 0.9
@@ -26,12 +26,10 @@ training:
   lambda_img_contras: 1
   lambda_text_contras: 1
   precision: supress
-  use_image_proj: False 
-  use_text_proj: False
-  share_proj: False
-  image_text_align: False
-  image_proj_detach: False
-  text_proj_detach: False
+  use_image_proj: True 
+  use_text_proj: True
+  share_proj: True
+  image_text_align: True
   logit_scale_init: 14.28
   logit_scale_fix: False
   img_loss_mode: Avg
