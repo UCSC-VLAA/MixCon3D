@@ -44,8 +44,10 @@ torchrun --nproc_per_node=8 src/main.py --ngpu 8 dataset.folder=data_path datase
 torchrun --nproc_per_node=8 src/main.py --ngpu 8 dataset.folder=data_path dataset.train_split=meta_data/split/ablation/train_shapenet_only.json dataset.train_batch_size=128 dataset.accum_freq=1 model.name=PointBERT model.scaling=3 model.use_dense=True --trial_name MixCon3D --config src/configs/train.yaml
 ```
 
+We use the [wandb](https://wandb.ai/) for logging.
+
 ## Acknowledgment
-This codebase is based on [OpenShape](https://github.com/Colin97/OpenShape_code). Thanks to the authors for their awesome contributions! This work is partially supported by TPU Research Cloud (TRC) program and Google Cloud Research Credits program.
+This codebase is based on [OpenShape](https://github.com/Colin97/OpenShape_code), [timm](https://github.com/huggingface/pytorch-image-models) and [PointBERT](https://github.com/lulutang0608/Point-BERT). Thanks to the authors for their awesome contributions! This work is partially supported by TPU Research Cloud (TRC) program and Google Cloud Research Credits program.
 
 ## Contact 
 Questions and discussions are welcome via [gaoyp23@mail2.sysu.edu.cn](gaoyp23@mail2.sysu.edu.cn) or open an issue here.
