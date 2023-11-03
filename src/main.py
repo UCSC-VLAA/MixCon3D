@@ -86,21 +86,20 @@ def main(args):
         model.cuda(config.device)
         model.to(config.device)
 
-        # Yipeng: Try use separate logit_scale values
+        # Use separate logit_scale values
         image_logit_scale = LogitScaleNetwork(config.training.logit_scale_init).to(config.device)
         text_logit_scale = LogitScaleNetwork(config.training.logit_scale_init).to(config.device)
         img_text_logit_scale = LogitScaleNetwork(config.training.logit_scale_init).to(config.device)
-
         pc_img_to_text_logit_scale = LogitScaleNetwork(config.training.logit_scale_init).to(config.device)
-        pc_text_to_img_logit_scale = LogitScaleNetwork(config.training.logit_scale_init).to(config.device)
-        text_img_to_pc_logit_scale = LogitScaleNetwork(config.training.logit_scale_init).to(config.device)
 
         multi_view_proj = None
+        # The use_MLP is set to False by default, the over-fitting is observed
         if config.training.use_MLP:
             image_proj = Mlp(in_features=config.model.out_channel).to(config.device)
             text_proj = Mlp(in_features=config.model.out_channel).to(config.device)
             pc_img_to_text_proj = Mlp(in_features=int(config.model.out_channel * 2),
                                       hidden_features=config.model.out_channel, out_features=config.model.out_channel).to(config.device)
+            multi_view_proj = torch.nn.Linear(config.model.out_channel, config.model.out_channel).to(config.device)
         else:
             image_proj = torch.nn.Linear(config.model.out_channel, config.model.out_channel).to(config.device)
             text_proj = torch.nn.Linear(config.model.out_channel, config.model.out_channel).to(config.device)
@@ -108,24 +107,22 @@ def main(args):
                 config.device)
             multi_view_proj = torch.nn.Linear(config.model.out_channel, config.model.out_channel).to(config.device)
 
-        # For 2 modals training&inference:
-
-        # Yipeng: For EMA update, now only support the point_encoder for ema update
+        # For EMA update, now support both the PointBERT and SparseConv for ema update
         model_ema = None
         image_proj_ema = None
         text_proj_ema = None
         pc_img_to_text_proj_ema = None
         multi_view_proj_ema = None
-        if config.training.ema and not config.training.sparseconv_ema: # SparseConvEmaV2
-            # Yipeng: decay=0.999 works very well
+        if config.training.ema and not config.training.sparseconv_ema:
             model_ema = ModelEmaV2(model, decay=config.training.ema_decay, device=None)
             image_proj_ema = ModelEmaV2(image_proj, decay=config.training.ema_decay, device=None)
             text_proj_ema = ModelEmaV2(text_proj, decay=config.training.ema_decay, device=None)
             multi_view_proj_ema = ModelEmaV2(text_proj, decay=config.training.ema_decay, device=None)
             pc_img_to_text_proj_ema = ModelEmaV2(pc_img_to_text_proj, decay=config.training.ema_decay, device=None)
 
+        # Due to the requirement of Minkowski, the ModelEmaV2 doesn't work on SparseConv.
+        # So, I use the modified SparseConvEmaV2.
         if config.training.ema and config.training.sparseconv_ema:
-            # Yipeng: decay=0.999 works very well
             model_ema = SparseConvEmaV2(model, config=config, device=None)
             image_proj_ema = ModelEmaV2(image_proj, decay=config.training.ema_decay, device=None)
             text_proj_ema = ModelEmaV2(text_proj, decay=config.training.ema_decay, device=None)
@@ -155,7 +152,6 @@ def main(args):
         image_proj = DDP(image_proj, device_ids=[device], output_device=device, find_unused_parameters=False)
         text_proj = DDP(text_proj, device_ids=[device], output_device=device, find_unused_parameters=False)
         multi_view_proj = DDP(multi_view_proj, device_ids=[device], output_device=device, find_unused_parameters=False)
-        # world_size = cli_args.ngpu
         train_loader = data.make(config, 'train', config.rank, cli_args.ngpu)
 
         if config.rank == 0:
