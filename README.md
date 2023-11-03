@@ -1,9 +1,21 @@
 # MixCon3D: Synergizing Multi-View and Cross-Modal Contrastive Learning for Enhancing 3D Representation
 This repository contains the official implementation of "MixCon3D" in our paper.
 
-## Installation
+<p align="center">
+  <img src="./figs/mixcon3d.jpg" width="1080">
+Overview of the MixCon3D. We integrate the image and point cloud modality information, formulating a holistic 3D instance-level representation for cross-modal alignment.
+</p>
 
+## Installation
+Please refer to this [instruction](https://github.com/UCSC-VLAA/MixCon3D/blob/main/Installation.md) for step-by-step installation guidance. Both the necessary packages and some helpful debug experience are provided.
 ## Data Downloading
+First, modify the path in the download_data.py.
+Then, execute the following command to download data from Hugging Face:
+```python
+python3 download_data.py
+```
+The datasets used for experiments are the same as [OpenShape](https://github.com/Colin97/OpenShape_code).
+Please refer to OpenShape for more details of the data.
 
 ## Training
 To train the PointBERT model using the MixCon3D, use the following command:
