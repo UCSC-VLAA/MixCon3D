@@ -26,7 +26,7 @@ torchrun --nproc_per_node=4 src/main.py --ngpu 4 dataset.folder=data5 dataset.tr
 
 
 ## Acknowledgment
-This codebase is based on [OpenShape](https://github.com/Colin97/OpenShape_code). Thanks to the authors for their awesome contributions!
+This codebase is based on [OpenShape](https://github.com/Colin97/OpenShape_code). Thanks to the authors for their awesome contributions! This work is partially supported by TPU Research Cloud (TRC) program and Google Cloud Research Credits program.
 
 ## Contact 
 Questions and discussions are welcome via [gaoyp23@mail2.sysu.edu.cn](gaoyp23@mail2.sysu.edu.cn) or open an issue here.
