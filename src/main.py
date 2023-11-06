@@ -203,8 +203,7 @@ def main(args):
                 trainer.load_from_checkpoint(os.path.join(config.ckpt_dir, '{}.pt'.format('latest')))
 
         trainer.train()
-
-    # Yipeng: I notice that the wandb sometimes won't end and will upload files continuously
+        
     # Currently, try to use reinit=True input parameter.
     if config.rank == 0:
         wandb.finish()
