@@ -49,5 +49,19 @@ We use the [wandb](https://wandb.ai/) for logging.
 ## Acknowledgment
 This codebase is based on [OpenShape](https://github.com/Colin97/OpenShape_code), [timm](https://github.com/huggingface/pytorch-image-models) and [PointBERT](https://github.com/lulutang0608/Point-BERT). Thanks to the authors for their awesome contributions! This work is partially supported by TPU Research Cloud (TRC) program and Google Cloud Research Credits program.
 
+## Citation
+
+```
+@article{gao2023mixcon3d,
+  title={MixCon3D: Synergizing Multi-View and Cross-Modal Contrastive Learning for Enhancing 3D Representation},
+  author={Yipeng Gao and Zeyu Wang and Wei-Shi Zheng and Cihang Xie and Yuyin Zhou},
+  journal={arXiv preprint arXiv:2311.01734},
+  year={2023},
+}
+```
+
 ## Contact 
 Questions and discussions are welcome via [gaoyp23@mail2.sysu.edu.cn](gaoyp23@mail2.sysu.edu.cn) or open an issue here.
+
+
+
