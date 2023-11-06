@@ -125,7 +125,7 @@ class Trainer(object):
             mask2 = np.kron(np.eye(s), np.ones((k, k))).astype(np.bool)
             mask_other = torch.from_numpy(np.logical_or(mask1, 1 - mask2)).bool().to(self.config.device)
 
-        # Yipeng: Start to add accumulating batch module
+        # Start to add accumulating batch module
 
         accum_freq = self.config.dataset.accum_freq
         if accum_freq > 1:
@@ -133,7 +133,6 @@ class Trainer(object):
                 accum_text_features, accum_point_features, accum_pc_img_features = [], [],[], [], [], [], []
         num_batches_per_epoch_accum = self.num_batches_per_epoch // accum_freq
 
-        # Yipeng: Debugging
         logging.info("----Initial Batch: {0} Accum_Iter: {1} After_Accum_Batch: {2}".format(
             self.num_batches_per_epoch, accum_freq, num_batches_per_epoch_accum))
 
@@ -329,7 +328,7 @@ class Trainer(object):
                         loss = text_contras_loss + img_contras_loss + img_text_contras_loss + pc_img_to_text_contras_loss
                     loss.backward()
 
-            # Yipeng: before accumulating batch
+            # Before accumulating batch
             self.optimizer.step()
             self.optimizer.zero_grad()
             if self.model_ema is not None:
