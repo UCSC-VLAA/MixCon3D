@@ -1,4 +1,4 @@
-# MixCon3D: Synergizing Multi-View and Cross-Modal Contrastive Learning for Enhancing 3D Representation
+# Sculpting Holistic 3D Representation in Contrastive Language-Image-3D Pre-training
 This repository contains the official implementation of "MixCon3D" in our paper.
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/mixcon3d-synergizing-multi-view-and-cross/zero-shot-3d-classification-on-objaverse-lvis)](https://paperswithcode.com/sota/zero-shot-3d-classification-on-objaverse-lvis?p=mixcon3d-synergizing-multi-view-and-cross)
@@ -58,11 +58,11 @@ This codebase is based on [OpenShape](https://github.com/Colin97/OpenShape_code)
 ## Citation
 
 ```
-@article{gao2023mixcon3d,
-  title={MixCon3D: Synergizing Multi-View and Cross-Modal Contrastive Learning for Enhancing 3D Representation},
-  author={Yipeng Gao and Zeyu Wang and Wei-Shi Zheng and Cihang Xie and Yuyin Zhou},
-  journal={arXiv preprint arXiv:2311.01734},
-  year={2023},
+@inproceedings{gao2023mixcon3d,
+  title     = {Sculpting Holistic 3D Representation in Contrastive Language-Image-3D Pre-training},
+  author    = {Yipeng Gao and Zeyu Wang and Wei-Shi Zheng and Cihang Xie and Yuyin Zhou},
+  booktitle = {CVPR},
+  year      = {2024},
 }
 ```
 
